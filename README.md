@@ -3,15 +3,14 @@
 1. 增加JWT验证，
    1. `/getToken` 生成token, 有效时间为`10`分钟
    2. `/tokenIn` 验证token是否有效,使用`JWT`验证
-2. 增加用户`CURD`操作，使用`TypeORM`操作数据库
-    1. `Get`<strong> :</strong>`/user/getAllUserDB`  获取所有用户
-    2. `Get`<strong> :</strong>`/user/getUserByNameDB/:username'`  获取指定用户
-    3. `Post`<strong> :</strong>`/user/addUserDB`  新增用户
-    4. `Get`<strong> :</strong>`/user/:id/:username`  修改用户
-    5. `Get`<strong> :</strong>`/user/delteUserDB/:id`  删除用户  
+2. 增加用户`CURD`操作，使用`TypeORM`操作数据库,数据库使用`mysql`
+    1. `Get`<strong> :</strong>`/user-database`  获取所有用户
+    2. `Get`<strong> :</strong>`/user-database/username`  获取指定用户
+    3. `Post`<strong> :</strong>`/user-database`  新增用户
+    4. `Patch`<strong> :</strong>`/user-database/id`  修改用户
+    5. `Delete`<strong> :</strong>`/user-database/id`  删除用户  
 3. 后续修改  
-   1. 用户`CURD`操作修改为`Restful`风格
-   2. 用户`CURD`操作增加`JWT`验证
+   1. 用户`CURD`操作增加`JWT`验证
 
 
 

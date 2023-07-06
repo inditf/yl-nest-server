@@ -5,7 +5,7 @@ import { UpdateUserDatabaseDto } from './dto/update-user-database.dto';
 
 @Controller('user-database')
 export class UserDatabaseController {
-  constructor(private readonly userDatabaseService: UserDatabaseService) {}
+  constructor(private readonly userDatabaseService: UserDatabaseService) { }
 
   @Post()
   create(@Body() createUserDatabaseDto: CreateUserDatabaseDto) {
@@ -17,9 +17,9 @@ export class UserDatabaseController {
     return this.userDatabaseService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.userDatabaseService.findOne(+id);
+  @Get(':username')
+  findOne(@Param('username') username: string) {
+    return this.userDatabaseService.findOne(username);
   }
 
   @Patch(':id')

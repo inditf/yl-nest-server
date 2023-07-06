@@ -14,7 +14,4 @@ export class User {
     @CreateDateColumn({ type: "timestamp", comment: "创建时间" })
     create_time: Date;
 
-    // @Generated('uuid')
-    // uuid: string;
-
 }
