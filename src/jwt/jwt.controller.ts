@@ -9,7 +9,13 @@ export class JwtController {
     @Post('/tokenIn')
     @UseGuards(AuthGuard('jwt'))
     aPost(@Req() req): any {
-        return req.user.username;
+        return {
+            statusCode: 200,
+            message: 'Token验证成功',
+            data: {
+                user: req.user.username,
+            },
+        };
     }
 
     @Post('/getToken')

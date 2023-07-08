@@ -1,16 +1,31 @@
 
 ## Description
-1. 增加JWT验证，
-   1. `/getToken` 生成token, 有效时间为`10`分钟
-   2. `/tokenIn` 验证token是否有效,使用`JWT`验证
-2. 增加用户`CURD`操作，使用`TypeORM`操作数据库,数据库使用`mysql`
-    1. `Get`<strong> :</strong>`/user-database`  获取所有用户
-    2. `Get`<strong> :</strong>`/user-database/username`  获取指定用户
-    3. `Post`<strong> :</strong>`/user-database`  新增用户
-    4. `Patch`<strong> :</strong>`/user-database/id`  修改用户
-    5. `Delete`<strong> :</strong>`/user-database/id`  删除用户  
-3. 后续修改  
-   1. 用户`CURD`操作增加`JWT`验证
+1. `JWT`验证  
+   生成 验证 `token`, 有效时间为`10`分钟  
+   密钥保存`config.ts`文件中，`.gitignore`忽略上传
+
+   | Method | Path      | Description | JWT验证 |
+   | ------ | --------- | ----------- | ------- |
+   | Post   | /getToken | 生成token   | 无      |
+   | Post   | /tokenIn  | 验证token   | 有      |
+
+
+2. 用户`CURD`操作-`Restful`风格  
+   通过`JWT`验证，`Guard`守卫，使用`TypeORM`操作`mysql`数据库   
+   
+   | Method | Path                               | Description  | JWT验证 |
+   | ------ | ---------------------------------- | ------------ | ------- |
+   | Post   | /user-database                     | 新增用户     | 无      |
+   | Get    | /user-database                     | 获取所有用户 | 有      |
+   | Get    | /user-database/:username/:password | 获取指定用户 | 有      |
+   | Patch  | /user-database/id                  | 修改用户信息 | 有      |
+   | Delete | /user-database/id                  | 删除用户     | 有      |
+
+
+   
+
+
+
 
 
 

@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common';
-import { UserModule } from './user/user.module';
 import { JwtModule } from './jwt/jwt.module';
 
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -18,7 +17,6 @@ import { UserDatabaseModule } from './user-database/user-database.module';
       synchronize: true,//自动同步数据库表结构
       autoLoadEntities: true,//自动加载实体
     }),
-    UserModule,
     JwtModule,
     UserDatabaseModule
   ],

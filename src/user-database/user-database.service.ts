@@ -7,6 +7,11 @@ import { Repository } from 'typeorm';
 import { UserDatabase } from './entities/user-database.entity';
 import { Like } from 'typeorm';
 
+// export type User = {
+//   username: string,
+//   password: string,
+// };
+
 @Injectable()
 export class UserDatabaseService {
   constructor(
@@ -20,36 +25,43 @@ export class UserDatabaseService {
     data.password = createUserDatabaseDto.password;
     data.create_time = new Date();
     try {
-      this.userDatabaseRepository.save(createUserDatabaseDto);
+      await this.userDatabaseRepository.save(createUserDatabaseDto);
       return {
-        code: 200,
+        statusCode: 200,
         data: {
           username: createUserDatabaseDto.username,
         },
-        msg: '添加成功',
+        message: '添加成功',
       };
     }
     catch (e) {
       console.log(e);
       return {
-        code: 500,
+        statusCode: 500,
         data: {
           username: createUserDatabaseDto.username,
         },
-        msg: '添加失败',
+        message: '添加失败',
       };
     }
   }
 
   async findAll() {
-    return await this.userDatabaseRepository.find();
+
+    const data = await this.userDatabaseRepository.find();
+    return {
+      statusCode: 200,
+      data: data,
+      message: '查询成功',
+    };
   }
 
-  async findOne(username: string) {
+  async findOne(username: string, password: string) {
 
     return await this.userDatabaseRepository.find({
       where: {
-        username: Like(`%${username}%`),
+        username: username,
+        password: password,
       }
     });
 
@@ -62,21 +74,21 @@ export class UserDatabaseService {
     try {
       await this.userDatabaseRepository.update(id, data);
       return {
-        code: 200,
+        statusCode: 200,
         data: {
           username: updateUserDatabaseDto.username,
         },
-        msg: '更新成功',
+        message: '更新成功',
       };
     }
     catch (e) {
       console.log(e);
       return {
-        code: 500,
+        statusCode: 500,
         data: {
           username: updateUserDatabaseDto.username,
         },
-        msg: '更新失败',
+        message: '更新失败',
       };
     }
   }
@@ -85,21 +97,21 @@ export class UserDatabaseService {
     try {
       await this.userDatabaseRepository.delete(id);
       return {
-        code: 200,
+        statusCode: 200,
         data: {
           id: id,
         },
-        msg: '删除成功',
+        message: '删除成功',
       };
     }
     catch (e) {
       console.log(e);
       return {
-        code: 500,
+        statusCode: 500,
         data: {
           id: id,
         },
-        msg: '删除失败',
+        message: '删除失败',
       };
     }
 
