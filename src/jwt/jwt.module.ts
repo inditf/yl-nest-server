@@ -7,7 +7,6 @@ import { jwtKey } from '../config';
 import { JwtStrategy } from './jwt.strategy';
 
 import { UserDatabaseModule } from 'src/user-database/user-database.module';
-import { UserDatabaseService } from 'src/user-database/user-database.service';
 @Module({
   imports: [
     UserDatabaseModule,
@@ -16,7 +15,7 @@ import { UserDatabaseService } from 'src/user-database/user-database.service';
         return {
           secret: jwtKey.secret,//生成Token的Key
           signOptions: {
-            expiresIn: '100m',//Token有效期
+            expiresIn: '10m',//Token有效期
           }
         }
       }

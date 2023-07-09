@@ -1,8 +1,8 @@
 
 ## Description
 1. `JWT`验证  
-   生成 验证 `token`, 有效时间为`10`分钟  
-   密钥保存`config.ts`文件中，`.gitignore`忽略上传
+   生成、验证 `token`, 有效时间为`10`分钟  
+   密钥保存在`config.ts`文件中，`.gitignore`忽略上传
 
    | Method | Path      | Description | JWT验证 |
    | ------ | --------- | ----------- | ------- |
@@ -11,7 +11,7 @@
 
 
 2. 用户`CURD`操作-`Restful`风格  
-   通过`JWT`验证，`Guard`守卫，使用`TypeORM`操作`mysql`数据库   
+   `Guard`全局守卫，`TypeORM`操作`mysql`数据库   
    
    | Method | Path                               | Description  | JWT验证 |
    | ------ | ---------------------------------- | ------------ | ------- |
