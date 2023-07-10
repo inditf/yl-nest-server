@@ -9,11 +9,10 @@ export class JwtService {
         // 底下的provider才能被注入
         private readonly userDatabaseService: UserDatabaseService,
         private readonly nestJwtService: NestJwtService,
-        // @Inject('UserDatabaseService') 
     ) { }
 
     async createToken(user) {
-        const payload = { username: user.username, password: user.password };
+        // const payload = { username: user.username, password: user.password };
         //在实际项目中一般要进行数据库验证查看用户用户名密码是否正确
         const data: any = await this.userDatabaseService.findOne(user.username, user.password);
         if (data.length == 0) {
@@ -23,14 +22,19 @@ export class JwtService {
                 data: ''
             };
         }
-        delete user.password;
+        // delete user.password;
         return {
             statusCode: 200,
             message: '登录成功',
             data: {
-                user: data,
+                user: data[0].username,
                 //得到token
-                token: this.nestJwtService.sign(payload)
+                token: this.nestJwtService.sign(
+                    {
+                        id: data[0].id,
+                        username: data[0].username,
+                    }
+                )
             },
         };
     }

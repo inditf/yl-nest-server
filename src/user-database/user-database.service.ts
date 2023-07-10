@@ -7,11 +7,6 @@ import { Repository } from 'typeorm';
 import { UserDatabase } from './entities/user-database.entity';
 import { Like } from 'typeorm';
 
-// export type User = {
-//   username: string,
-//   password: string,
-// };
-
 @Injectable()
 export class UserDatabaseService {
   constructor(

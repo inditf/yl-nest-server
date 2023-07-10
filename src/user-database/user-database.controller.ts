@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Req, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { UserDatabaseService } from './user-database.service';
 import { CreateUserDatabaseDto } from './dto/create-user-database.dto';
 import { UpdateUserDatabaseDto } from './dto/update-user-database.dto';
@@ -16,8 +16,15 @@ export class UserDatabaseController {
   }
 
   @Get()
-  findAll() {
+  findAll(@Req() req) {
     return this.userDatabaseService.findAll();
+    // return {
+    //   statusCode: 200,
+    //   message: 'Token验证成功',
+    //   data: {
+    //     user: req.user,
+    //   }
+    // };
   }
 
   @Get('/:username/:password')

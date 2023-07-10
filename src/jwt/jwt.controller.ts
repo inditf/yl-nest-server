@@ -1,13 +1,14 @@
 import { JwtService } from './jwt.service';
 import { Controller, UseGuards, Get, Post, Req, Body } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
+
+import { Public } from 'src/public';
 @Controller('')
 export class JwtController {
     // JwtService: any;
     constructor(private readonly JwtService: JwtService) { }
     //使用jwt验证token的端口
     @Post('/tokenIn')
-    @UseGuards(AuthGuard('jwt'))
     aPost(@Req() req): any {
         return {
             statusCode: 200,
@@ -18,6 +19,7 @@ export class JwtController {
         };
     }
 
+    @Public()
     @Post('/getToken')
     getTokenByUserId(
         @Body() user: any,
