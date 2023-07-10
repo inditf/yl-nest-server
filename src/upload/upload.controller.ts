@@ -25,8 +25,20 @@ export class UploadController {
   downolad(@Res() res: Response, @Param('path') path: string) {
     let url = '';
     switch (path) {
-      case '1':
-        url = join(__dirname, '../static/upload/1688954450122-v0xy3b7g.jpg');
+      case 'title.png':
+        url = join(__dirname, '../../static/auth/title.png');
+        break;
+      case 'subTitle.png':
+        url = join(__dirname, '../../static/form/subTitle.png');
+        break;
+      case 'download.png':
+        url = join(__dirname, '../../static/feedback/download.png');
+        break;
+      case 'background.png':
+        url = join(__dirname, '../../static/des/background.png');
+        break;
+      case 'qrcode-background.png':
+        url = join(__dirname, '../../static/background/qrcode-background.png');
         break;
       default:
         url = '';
@@ -36,9 +48,29 @@ export class UploadController {
   }
 
   @Public()
-  @Get('stream')
-  async down(@Res() res: Response) {
-    const url = join(__dirname, '../static/upload/1688954450122-v0xy3b7g.jpg')
+  @Get('stream/:path')//流式下载
+  async down(@Res() res: Response, @Param('path') path: string) {
+    let url = '';
+    switch (path) {
+      case 'title.png':
+        url = join(__dirname, '../../static/auth/title.png');
+        break;
+      case 'subTitle.png':
+        url = join(__dirname, '../../static/form/subTitle.png');
+        break;
+      case 'download.png':
+        url = join(__dirname, '../../static/feedback/download.png');
+        break;
+      case 'background.png':
+        url = join(__dirname, '../../static/des/background.png');
+        break;
+      case 'qrcode-background.png':
+        url = join(__dirname, '../../static/background/qrcode-background.png');
+        break;
+      default:
+        url = '';
+        break;
+    }
     const tarStream = new zip.Stream()
     await tarStream.addEntry(url)
 
@@ -46,7 +78,7 @@ export class UploadController {
 
     res.setHeader(
       'Content-Disposition',
-      `attachment; filename=test`,
+      `attachment; filename=test.zip`,
     );
 
     tarStream.pipe(res)

@@ -21,7 +21,14 @@
    | Patch  | /user-database/id                  | 修改用户信息 | 有      |
    | Delete | /user-database/id                  | 删除用户     | 有      |
 
+3. 文件-上传/下载
+   | Method | Path                 | Description          | JWT验证 |
+   | ------ | -------------------- | -------------------- | ------- |
+   | Post   | /upload/image        | 上传文件             | 有      |
+   | Get    | /upload/expery/:path | 下载文件`download`   | 有      |
+   | Get    | /upload/stream/:path | 下载文件`zip-stream` | 有      |
 
+   设置静态资源目录，`/static`目录下的文件可以直接访问
    
 
 
