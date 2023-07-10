@@ -7,9 +7,7 @@ import { jwtKey } from '../config';
 import { JwtStrategy } from './jwt.strategy';
 
 import { UserDatabaseModule } from 'src/user-database/user-database.module';
-//全局使用jwt验证
-import { APP_GUARD } from '@nestjs/core';
-import { JwtGuard } from '../jwt/jwt.guard';
+
 @Module({
   imports: [
     UserDatabaseModule,
@@ -27,10 +25,7 @@ import { JwtGuard } from '../jwt/jwt.guard';
   providers: [
     JwtService,
     JwtStrategy,//JwtStrategy是自定义的验证策略
-    {
-      provide: APP_GUARD,
-      useClass: JwtGuard,
-    }],
+  ],
   controllers: [JwtController]
 })
 export class JwtModule { }
